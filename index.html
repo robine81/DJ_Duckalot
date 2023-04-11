@@ -4,27 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--Favicon-->
+    <link rel="icon" href="images/dj.jpeg" />
     <link rel="stylesheet" href="src/styles/style.css" />
     <title>DJ Duck-a-lot</title>
   </head>
   <body>
     <div class="game-intro">
-      <img src="./images/logo.jpeg" alt="" id="logo-img" />                        <!--Change image-->
+      <img src="/images/logo.jpeg" alt="" id="logo-img" />                        <!--Change image-->
       <br />
       <button id="start-button">StartGame</button>
-      <p id="splash-text">Go up and down to make sure DJ Duck-a-lot doesn't get hit by something bad!
-      <br>And that he catches only the good stuff.</p>
-      <p id="game-over-text">Oh no, you lost!</p>
-      <img src="./images/arrows.png" alt="" class="arrows-img" />                  <!--Change image-->
+      <button id="restart-button">Restart Game</button>
+      <div id="arrows-img-div">
+        <h4>Go up and down to make sure DJ Duck-a-lot doesn't get hit by something bad! And that he catches only the good stuff.</h4>
+        <img src="/images/arrows.png" alt="arrows" id="arrows-img" />
+      </div>
     </div>
 
     <div id="game-board">
-      <canvas id="the-canvas" width="1000" height="800"></canvas>
+      <div id="left-game-div">
+        <img id="game-logo" src="/images/logo.jpeg" alt="" />
+        <div id="score-div">
+          <h1>Score: <span id="score">0</span></h1>
+        </div>
+      </div>
+      <canvas id="my-canvas" width="1000" height="800"></canvas>
     </div>
 
-    <script type="text/javascript" src="./src/js/dj.js"></script>
-    <script type='text/javascript' src="./src/js/game.js" ></script>
-    <script type='text/javascript' src="./src/js/obstacles.js"></script>
-    <script type="text/javascript" src="./src/js/main.js"></script>
+    <script type="text/javascript" src="/src/js/main.js"></script>
   </body>
 </html>
