@@ -25,7 +25,7 @@ let gameBoard = document.querySelector("#game-board");
 
 //background
 let bg = new Image();
-bg.src = "/images/crowd.jpeg";
+bg.src = "images/crowd.jpeg";
 let bgFirstImg = 0;
 // let bgSecondImg = -canvas.height;                                //used for rolling background
 
