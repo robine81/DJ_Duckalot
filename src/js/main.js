@@ -1,19 +1,19 @@
-//draw the canvas
+                                                                                                        //draw the canvas
 let canvas = document.getElementById("my-canvas");
 let ctx = canvas.getContext("2d");
-canvas.style.border = "2px solid black";
+//canvas.style.border = "2px solid black";
 
-//canvas variables
-let height = canvas.height - 200;
-let middle = canvas.width / 2 + 60;
+                                                                                                        //canvas variables
+//let height = canvas.height - 200;
+//let middle = canvas.width / 2 + 60;
 
-//player car dimensions
-let playerWidth = 130;
-let playerHeight = 150;
+                                                                                                        //player dimensions
+let playerWidth = 90;
+let playerHeight = 90;
 let playerX = 0;
 let playerY = canvas.height / 2 - playerHeight - 5;
 
-//all varibles
+                                                                                                        //all varibles
 let startBtn = document.querySelector("#start-button");
 let restartBtn = document.querySelector("#restart-button");
 let logo = document.querySelector("#logo-img");
@@ -23,13 +23,13 @@ let scoreDiv = document.querySelector("#score-div");
 let scoreElement = document.querySelector("#score");
 let gameBoard = document.querySelector("#game-board");
 
-//background
+                                                                                                        //background
 let bg = new Image();
 bg.src = "images/crowd.jpeg";
 let bgFirstImg = 0;
-// let bgSecondImg = -canvas.height;                                //used for rolling background
+// let bgSecondImg = -canvas.height;                                                                    //used for rolling background
 
-//Objects for DJ and all obstracles
+                                                                                                        //Objects for DJ and all obstracles
 let dj = new Image();
 dj.src = "images/dj_player.png";
 let beer = new Image();
@@ -41,19 +41,29 @@ cd.src = "images/cd.jpeg";
 let rose = new Image();
 rose.src = "images/rose.png";
 
-//check keyboard strokes
+                                                                                                        //check keyboard strokes
 let moveRight = false;
 let moveLeft = false;
 let moveUp = false
 let moveDown = false
 
-//variables for sizes and movements
+                                                                                                        //variables for sizes and movements
 let speed = 2;
 let intervalId = 0;
 let isGameOver = false;
 let score = 0;
 
-//generate random 'Y' positions for the obstacles
+                                                                                                        //generate random 'X' positions for the obstacles
+let randomXPlacement = () => {
+  let biggestX = canvas.width + 500;
+  let smallestX = 0;
+  let randomX = Math.floor(
+    Math.random() * (biggestX - smallestX + 1) + smallestX
+  );
+  return randomX;
+};
+
+                                                                                                        //generate random 'Y' positions for the obstacles
 let randomYPlacement = () => {
   let biggestY = canvas.height - 20;
   let smallestY = 5;
@@ -62,31 +72,29 @@ let randomYPlacement = () => {
   );
   return randomY;
 };
-
-
-//Obstacles information
+                                                                                                      //Obstacles information
 let throwArray = [
-  { img: beer, x: canvas.width + 200, y: randomYPlacement(), width: 50, height: 50 },
-  { img: underwear, x: canvas.width + 600, y: randomYPlacement(), width: 50, height: 50 },
-  { img: cd, x: canvas.width + 1300, y: randomYPlacement(), width: 50, height: 50 },
-  { img: rose, x: canvas.width + 1800, y: randomYPlacement(), width: 50, height: 50 },
-  { img: beer, x: canvas.width + 2300, y: randomYPlacement(), width: 50, height: 50 },
-  { img: underwear, x: canvas.width, y: randomYPlacement(), width: 50, height: 50 },
-  { img: cd, x: canvas.width + 3000, y: randomYPlacement(), width: 50, height: 50 },
-  { img: rose, x: canvas.width, y: randomYPlacement(), width: 50, height: 50 },
+  { img: beer, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: underwear, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: cd, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: rose, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: beer, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: underwear, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: cd, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
+  { img: rose, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
 ];
 
-//start game function
+                                                                                                        //start game function
 function startGame() {
   canvas.style.display = "block";
   startBtn.style.display = "none";
   logo.style.display = "none";
   gameLogo.style.display = "none";
   arrows.style.display = "none";
-  scoreDiv.style.display = "none";
+  scoreDiv.style.display = "block";
   gameBoard.style.display = "flex";
 
-  //draw background
+                                                                                                        //draw background
   ctx.drawImage(bg, 0, bgFirstImg, canvas.width, canvas.height);
 
 
@@ -103,10 +111,10 @@ function startGame() {
   //   bgSecondImg = -canvas.height;
   // }
 
-  //draw DJ
+                                                                                                      //draw DJ
   ctx.drawImage(dj, playerX, playerY, playerWidth, playerHeight);
 
-  for (let i = 0; i < throwArray.length; i++) {
+  for (let i = 0; i < throwArray.length; i++) {                                                       //draw elements
     ctx.drawImage(
       throwArray[i].img,
       throwArray[i].x,
@@ -114,20 +122,35 @@ function startGame() {
       throwArray[i].width,
       throwArray[i].height
     );
-    throwArray[i].x -= speed;
-  
-
+    throwArray[i].x -= speed
+    
     //score handling, if obstacle passes dj player... score ++
-    if (
-      throwArray[i].y > playerY + playerHeight &&
-      throwArray[i].y <= playerY + playerHeight + speed
-    ) {
+    if (throwArray[i].x <= 0)
+     {
       score = score + 1;
       scoreElement.innerHTML = score;
-      throwArray[i].x = canvas.width 
+      intervalId = 0
+      throwArray[i].x = canvas.width + randomXPlacement() 
+      
+      if (score === 10){
+        speed += 1
+      } else if (score === 20){
+        speed += 1
+      }
+      
     }
 
-    //collision inside of for loop
+    //score handling, if obstacle passes dj player... score ++
+    // if (
+    //   throwArray[i].y > playerY + playerHeight &&
+    //   throwArray[i].y <= playerY + playerHeight + speed
+    // ) {
+    //   score = score + 1;
+    //   scoreElement.innerHTML = score;
+    //   intervalId = 0                                                                                //reload element here??
+    // }
+
+                                                                                                    //check collision 
     if (
       // checks if the bottom of the player is touching the top of the obstacle
       throwArray[i].y + throwArray[i].height >= playerY + 10 &&
@@ -142,7 +165,8 @@ function startGame() {
     }
   }
 
-  if (playerX < canvas.width - 150 && moveRight) {
+                                                                                                    //move the player
+  if (playerX < canvas.width - 150 && moveRight) {                                                    
     playerX += 5;
   } else if (playerX > 35 && moveLeft) {
     playerX -= 5;    
@@ -152,7 +176,7 @@ function startGame() {
     playerY += 5;
   }
 
-  //listener for player movement
+                                                                                                    //listener for player movement
   document.addEventListener("keydown", (event) => {
     if (event.code === "ArrowRight") {
       moveRight = true;
@@ -172,7 +196,7 @@ function startGame() {
     moveUp = false;
   });
 
-  //if statement for game over
+                                                                                                    //if statement for game over
   if (isGameOver) {
     cancelAnimationFrame(intervalId);
     gameover();
@@ -181,7 +205,7 @@ function startGame() {
   }
 }
 
-//restart game function
+                                                                                                    //restart game function
 function restartGame() {
   canvas.style.display = "block";
   startBtn.style.display = "none";
