@@ -58,7 +58,7 @@ let randomXPlacement = () => {
   let biggestX = canvas.width + 500;
   let smallestX = 0;
   let randomX = Math.floor(
-    Math.random() * (biggestX - smallestX + 1) + smallestX
+    Math.random() * (biggestX - smallestX + 50) + smallestX
   );
   return randomX;
 };
@@ -123,7 +123,27 @@ function startGame() {
       throwArray[i].height
     );
     throwArray[i].x -= speed
-    
+
+                                                                                                     //check collision 
+    if (
+      // checks if the bottom of the player is touching the top of the obstacle
+      throwArray[i].y + throwArray[i].height >= playerY + 10 &&
+      //checks if the right side of the player is more to the right than the obstacle
+      playerX + 120 > throwArray[i].x &&
+      // checks if the left side of the player is touching the left side of the obstacle
+      playerX < throwArray[i].x + throwArray[i].width &&
+      //checks if the bottom of the player car is touching the top of the obstacle
+      playerY + playerHeight - 10 > throwArray[i].y) { 
+        if (throwArray[i].img === rose || throwArray[i].img === cd ){
+        score = score + 10
+        throwArray[i].x = canvas.width + randomXPlacement() 
+        scoreElement.innerHTML = score;
+        } else 
+          {
+            isGameOver = true;
+          }
+    }
+
     //score handling, if obstacle passes dj player... score ++
     if (throwArray[i].x <= 0)
      {
@@ -136,32 +156,7 @@ function startGame() {
         speed += 1
       } else if (score === 20){
         speed += 1
-      }
-      
-    }
-
-    //score handling, if obstacle passes dj player... score ++
-    // if (
-    //   throwArray[i].y > playerY + playerHeight &&
-    //   throwArray[i].y <= playerY + playerHeight + speed
-    // ) {
-    //   score = score + 1;
-    //   scoreElement.innerHTML = score;
-    //   intervalId = 0                                                                                //reload element here??
-    // }
-
-                                                                                                    //check collision 
-    if (
-      // checks if the bottom of the player is touching the top of the obstacle
-      throwArray[i].y + throwArray[i].height >= playerY + 10 &&
-      //checks if the right side of the player is more to the right than the obstacle
-      playerX + 120 > throwArray[i].x &&
-      // checks if the left side of the player is touching the left side of the obstacle
-      playerX < throwArray[i].x + throwArray[i].width &&
-      //checks if the bottom of the player car is touching the top of the obstacle
-      playerY + playerHeight - 10 > throwArray[i].y
-    ) {
-      isGameOver = true;
+      } 
     }
   }
 
@@ -172,7 +167,7 @@ function startGame() {
     playerX -= 5;    
   } else if (playerY > 35 && moveUp) {
     playerY -= 5;
-  } else if (playerY > 35 && moveDown) {
+  } else if (playerY >= 35 && moveDown) {
     playerY += 5;
   }
 
@@ -207,10 +202,8 @@ function startGame() {
 
                                                                                                     //restart game function
 function restartGame() {
-  canvas.style.display = "block";
-  startBtn.style.display = "none";
-  logo.style.display = "none";
-  arrows.style.display = "block";
+
+  window.location.reload()
 }
 
 function gameover() {
@@ -236,7 +229,6 @@ window.addEventListener("load", () => {
 
   startBtn.addEventListener("click", () => {
     startGame();
-    console.log("start button pushed!");
   });
   restartBtn.addEventListener("click", () => {
     restartGame();

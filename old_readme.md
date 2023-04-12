@@ -27,9 +27,48 @@ _List of features to be implemented after the MVP_
 _List of classes and methods_
 # main.js
 
-- startGame() {}
-- restartGame() {}
-- gameover() {}
+- buildSplashScreen () {}
+- buildGameScreen () {}
+- buildGameOverScreen () {}
+
+- startGame()
+- restartGame()
+- gameover()
+
+# game.js
+
+- game () {}
+- startLoop () {}
+- checkCollisions () {}
+- addThrownObj () {}
+- clearCanvas () {}
+- updateCanvas () {}
+- drawCanvas () {}
+- gameOver () {}
+
+# dj.js 
+
+- DJ () {
+    this.x;
+    this.y;
+    this.direction;
+    this.size
+}
+- draw () {}
+- move () {}
+- checkScreenCollision () {}
+
+# thrownObj.js 
+
+- ThrownObj () {
+    this.x;
+    this.y;
+    this.direction;
+    this.size
+}
+- draw () {}
+- move () {}
+- checkCollision () {}
 
 ## States and States Transitions
 _List of states (views) of your game_
@@ -48,4 +87,4 @@ _List of tasks in order of priority_
 - [Trello Link](https://trello.com/invite/b/s2EZHQlx/ATTIba21209239a0070e7ca9fab61a337fc42AFA9931/dj-duckalot-game
 - [Slides Link](http://slides.com)
 - [Github repository Link](https://github.com/robine81/DJ_Duckalot)
-- [Deployment Link](https://robine81.github.io/DJ_Duckalot/)
+- [Deployment Link](http://github.com)
