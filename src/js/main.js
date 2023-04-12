@@ -25,21 +25,21 @@ let gameBoard = document.querySelector("#game-board");
 
 //background
 let bg = new Image();
-bg.src = "/images/crowd.jpeg";
+bg.src = "images/crowd.jpeg";
 let bgFirstImg = 0;
 // let bgSecondImg = -canvas.height;                                //used for rolling background
 
 //Objects for DJ and all obstracles
 let dj = new Image();
-dj.src = "/images/dj_player.png";
+dj.src = "images/dj_player.png";
 let beer = new Image();
-beer.src = "/images/beer.png";
+beer.src = "images/beer.png";
 let underwear = new Image();
-underwear.src = "/images/underwear.png";
+underwear.src = "images/underwear.png";
 let cd = new Image();
-cd.src = "/images/cd.jpeg";
+cd.src = "images/cd.jpeg";
 let rose = new Image();
-rose.src = "/images/rose.png";
+rose.src = "images/rose.png";
 
 //check keyboard strokes
 let moveRight = false;
