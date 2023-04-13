@@ -1,15 +1,14 @@
                                                                                                         //draw the canvas
 let canvas = document.getElementById("my-canvas");
 let ctx = canvas.getContext("2d");
-//canvas.style.border = "2px solid black";
 
                                                                                                         //canvas variables
 //let height = canvas.height - 200;
 //let middle = canvas.width / 2 + 60;
 
                                                                                                         //player dimensions
-let playerWidth = 90;
-let playerHeight = 90;
+let playerWidth = 100;
+let playerHeight = 100;
 let playerX = 0;
 let playerY = canvas.height / 2 - playerHeight - 5;
 
@@ -22,6 +21,10 @@ let arrows = document.querySelector("#arrows-img-div");
 let scoreDiv = document.querySelector("#score-div");
 let scoreElement = document.querySelector("#score");
 let gameBoard = document.querySelector("#game-board");
+let luckMessage = document.querySelector("#luck");
+let gameOverMsg = document.querySelector("#text-game-over");
+let introMsg = document.querySelector("#text-intro");
+
 
                                                                                                         //background
 let bg = new Image();
@@ -91,8 +94,11 @@ function startGame() {
   logo.style.display = "none";
   gameLogo.style.display = "none";
   arrows.style.display = "none";
+  introMsg.style.display = "none";
   scoreDiv.style.display = "block";
   gameBoard.style.display = "flex";
+  luckMessage.style.display = "block";
+  
 
                                                                                                         //draw background
   ctx.drawImage(bg, 0, bgFirstImg, canvas.width, canvas.height);
@@ -135,7 +141,7 @@ function startGame() {
       //checks if the bottom of the player car is touching the top of the obstacle
       playerY + playerHeight - 10 > throwArray[i].y) { 
         if (throwArray[i].img === rose || throwArray[i].img === cd ){
-        score = score + 10
+        score += 5
         throwArray[i].x = canvas.width + randomXPlacement() 
         scoreElement.innerHTML = score;
         } else 
@@ -152,23 +158,25 @@ function startGame() {
       intervalId = 0
       throwArray[i].x = canvas.width + randomXPlacement() 
       
-      if (score === 10){
-        speed += 1
-      } else if (score === 20){
-        speed += 1
+      if (score >= 50){
+        speed = 4
+      } else if (score >= 100){
+        speed = 5
+      } else if (score >= 150){
+        speed = 6
       } 
     }
   }
 
                                                                                                     //move the player
-  if (playerX < canvas.width - 150 && moveRight) {                                                    
-    playerX += 5;
-  } else if (playerX > 35 && moveLeft) {
-    playerX -= 5;    
-  } else if (playerY > 35 && moveUp) {
-    playerY -= 5;
-  } else if (playerY >= 35 && moveDown) {
-    playerY += 5;
+  if (playerX <= canvas.width - playerWidth && moveRight) {                                                    
+    playerX += 6;
+  } else if (playerX > 0 && moveLeft) {
+    playerX -= 6;    
+  } else if (playerY >= 0 && moveUp) {
+    playerY -= 6;
+  } else if (playerY <= canvas.height - playerHeight && moveDown) {
+    playerY += 6;
   }
 
                                                                                                     //listener for player movement
@@ -209,11 +217,16 @@ function restartGame() {
 function gameover() {
   canvas.style.display = "none";
   startBtn.style.display = "none";
-  logo.style.display = "none";
+  restartBtn.style.display = "block";
+  logo.style.display = "block";
   arrows.style.display = "none";
+  gameBoard.style.display = "none";
+  luckMessage.style.display = "block";
+  gameOverMsg.style.display = "block";
+
   gameLogo.style.display = "block";
   scoreDiv.style.display = "block";
-  restartBtn.style.display = "block";
+  
 }
 
   //game begins here
@@ -226,6 +239,8 @@ window.addEventListener("load", () => {
   arrows.style.display = "flex";
   scoreDiv.style.display = "none";
   gameBoard.style.display = "none";
+  gameOverMsg.style.display = "none";
+
 
   startBtn.addEventListener("click", () => {
     startGame();

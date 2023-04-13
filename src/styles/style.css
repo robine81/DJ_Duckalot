@@ -1,14 +1,13 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(0, 180, 120);
-  background: url("../images/crowd.jpeg");
+  background-color: rgb(140, 238, 249);
   background-size: cover;
   background-repeat: no-repeat;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     color: rgb(255, 255, 255);
     background-color: rgb(9, 167, 175);
     padding: 15px;
@@ -16,19 +15,22 @@ body {
     border: 2px solid rgb(25, 25, 26);
   }
   
-  .game-intro {
+  .game-splash {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 2rem
+    margin-top: 2rem;
+    padding: 1rem;
   }
 
   h4 {
     text-align: center;
-    font-size: 1rem;
+    width: 36%;
+    font-size: 1.5rem;
     font-family: "Verdana";
+    color: rgb(246, 251, 252);
   }
 
   h3 {
@@ -72,8 +74,7 @@ body {
     transition: ease-in 0.2s;
   }
   body button:hover {
-    border: 4px solid white;
-    background-color: #c9111a;
+    background-color: #19e4ee;
     color: rgb(255, 255, 255);
   }
   
@@ -86,8 +87,8 @@ body {
     align-items: flex-start;
   }
   
-  #left-game-div {
-    padding-top: 6rem;
+  #game-div {
+    /* padding-top: 6rem; */
     width: 0;
     margin: 1rem;
     /* height: 100vh; */
@@ -95,4 +96,9 @@ body {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+  }
+
+  #score-div {
+    width: 12rem;
+    margin-left: 6rem
   }
