@@ -46,6 +46,6 @@ _List of tasks in order of priority_
 ## Links
 
 - [Trello Link](https://trello.com/invite/b/s2EZHQlx/ATTIba21209239a0070e7ca9fab61a337fc42AFA9931/dj-duckalot-game
-- [Slides Link](http://slides.com)
+- [Slides Link](https://docs.google.com/presentation/d/1EWttmQzIC7aMvpkGaHJNU9FxxLeoP-fc/edit?usp=sharing&ouid=104865308033960868085&rtpof=true&sd=true)
 - [Github repository Link](https://github.com/robine81/DJ_Duckalot)
 - [Deployment Link](https://robine81.github.io/DJ_Duckalot/)
