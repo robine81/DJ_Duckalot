@@ -28,7 +28,7 @@ let introMsg = document.querySelector("#text-intro");
 
                                                                                                         //background
 let bg = new Image();
-bg.src = "images/crowd.jpeg";
+bg.src = "images/dance_floor.jpeg";
 let bgFirstImg = 0;
 // let bgSecondImg = -canvas.height;                                                                    //used for rolling background
 
