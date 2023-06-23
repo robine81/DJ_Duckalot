@@ -87,7 +87,7 @@ let throwArray = [
   { img: rose, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
 ];
 
-let loadingPageAudio = new Audio("../../music/Game_Lohec_Robine.mp3")
+let loadingPageAudio = new Audio("/music/Game_Lohec_Robine.mp3")
                                                                                                         //start game function
 function startGame() {
   canvas.style.display = "block";
