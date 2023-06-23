@@ -87,6 +87,7 @@ let throwArray = [
   { img: rose, x: canvas.width + randomXPlacement(), y: randomYPlacement(), width: 50, height: 50 },
 ];
 
+let loadingPageAudio = new Audio("../../music/Game_Lohec_Robine.mp3")
                                                                                                         //start game function
 function startGame() {
   canvas.style.display = "block";
@@ -99,7 +100,7 @@ function startGame() {
   gameBoard.style.display = "flex";
   luckMessage.style.display = "block";
   
-
+  loadingPageAudio.play()
                                                                                                         //draw background
   ctx.drawImage(bg, 0, bgFirstImg, canvas.width, canvas.height);
 
@@ -226,7 +227,8 @@ function gameover() {
 
   gameLogo.style.display = "block";
   scoreDiv.style.display = "block";
-  
+  loadingPageAudio.pause()
+  loadingPageAudio.currentTime = 0
 }
 
   //game begins here
